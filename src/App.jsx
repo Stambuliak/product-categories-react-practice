@@ -33,7 +33,7 @@ export const App = () => {
       setProductList(productsWithDetails);
     } else {
       setProductList(
-        productList.filter(product => product.owner.id === userId),
+        productsWithDetails.filter(product => product.owner.id === userId),
       );
     }
   }
@@ -44,7 +44,7 @@ export const App = () => {
     } else {
       setProductList(
         // eslint-disable-next-line max-len
-        productList.filter(product => product.category.title === title),
+        productsWithDetails.filter(product => product.category.title === title),
       );
     }
   }
