@@ -26,6 +26,11 @@ export const App = () => {
   const [productList, setProductList] = useState(productsWithDetails);
   const [value, setValue] = useState('');
 
+  const [idClass, setIdClass] = useState('fas fa-sort');
+  const [idProduct, setProductClass] = useState('fas fa-sort');
+  const [idCategory, setCategoryClass] = useState('fas fa-sort');
+  const [idUser, setUserClass] = useState('fas fa-sort');
+
   function handleUserSelection(userId) {
     setSelectedUser(userId);
 
@@ -57,9 +62,47 @@ export const App = () => {
     setValue(val);
   }
 
-  const visibleProducts = productList.filter(product => correctTarget(product.name)
-    || correctTarget(product.owner.name)
-    || correctTarget(product.category.title));
+  const idClassName = () => {
+    if (idClass === 'fas fa-sort') {
+      setIdClass('fas fa-sort-up');
+    } else if (idClass === 'fas fa-sort-up') {
+      setIdClass('fas fa-sort-down');
+    } else {
+      setIdClass('fas fa-sort');
+    }
+  };
+
+  const idProducts = () => {
+    if (idProduct === 'fas fa-sort') {
+      setProductClass('fas fa-sort-up');
+    } else if (idProduct === 'fas fa-sort-up') {
+      setProductClass('fas fa-sort-down');
+    } else {
+      setProductClass('fas fa-sort');
+    }
+  };
+
+  const idCategories = () => {
+    if (idCategory === 'fas fa-sort') {
+      setCategoryClass('fas fa-sort-up');
+    } else if (idCategory === 'fas fa-sort-up') {
+      setCategoryClass('fas fa-sort-down');
+    } else {
+      setCategoryClass('fas fa-sort');
+    }
+  };
+
+  const idUsers = () => {
+    if (idUser === 'fas fa-sort') {
+      setUserClass('fas fa-sort-up');
+    } else if (idUser === 'fas fa-sort-up') {
+      setUserClass('fas fa-sort-down');
+    } else {
+      setUserClass('fas fa-sort');
+    }
+  };
+
+  const visibleProducts = productList.filter(product => correctTarget(product.name));
 
   return (
     <div className="section">
@@ -200,9 +243,12 @@ export const App = () => {
                       <span className="is-flex is-flex-wrap-nowrap">
                         ID
 
-                        <a href="#/">
+                        <a href="#/" onClick={idClassName}>
                           <span className="icon">
-                            <i data-cy="SortIcon" className="fas fa-sort" />
+                            <i
+                              data-cy="SortIcon"
+                              className={idClass}
+                            />
                           </span>
                         </a>
                       </span>
@@ -212,9 +258,12 @@ export const App = () => {
                       <span className="is-flex is-flex-wrap-nowrap">
                         Product
 
-                        <a href="#/">
+                        <a href="#/" onClick={idProducts}>
                           <span className="icon">
-                            <i data-cy="SortIcon" className="fas fa-sort-down" />
+                            <i
+                              data-cy="SortIcon"
+                              className={idProduct}
+                            />
                           </span>
                         </a>
                       </span>
@@ -224,9 +273,9 @@ export const App = () => {
                       <span className="is-flex is-flex-wrap-nowrap">
                         Category
 
-                        <a href="#/">
+                        <a href="#/" onClick={idCategories}>
                           <span className="icon">
-                            <i data-cy="SortIcon" className="fas fa-sort-up" />
+                            <i data-cy="SortIcon" className={idCategory} />
                           </span>
                         </a>
                       </span>
@@ -236,9 +285,9 @@ export const App = () => {
                       <span className="is-flex is-flex-wrap-nowrap">
                         User
 
-                        <a href="#/">
+                        <a href="#/" onClick={idUsers}>
                           <span className="icon">
-                            <i data-cy="SortIcon" className="fas fa-sort" />
+                            <i data-cy="SortIcon" className={idUser} />
                           </span>
                         </a>
                       </span>
